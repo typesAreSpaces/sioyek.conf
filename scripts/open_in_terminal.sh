@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
-FILE_PATH=$(dirname "$1")
-FILE_PATH=${FILE_PATH:1}
-/opt/homebrew/bin/wezterm --working-directory "${FILE_PATH}"
+set -euo pipefail
+FILE_PATH=$(dirname -- "${1:?Expected a document path}")
+exec /opt/homebrew/bin/wezterm start --cwd "$FILE_PATH"
