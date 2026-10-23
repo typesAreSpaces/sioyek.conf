@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
 set -euo pipefail
-FILE_PATH=$(dirname -- "${1:?Expected a document path}")
-printf '%s' "$FILE_PATH" | pbcopy
+FILE_PATH=${1:?Expected a document path}
+FILE_PATH=${FILE_PATH#\"}
+FILE_PATH=${FILE_PATH%\"}
+printf '"%s"' "$(dirname -- "$FILE_PATH")" | pbcopy
